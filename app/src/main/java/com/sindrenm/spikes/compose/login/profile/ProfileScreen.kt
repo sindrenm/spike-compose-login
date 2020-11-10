@@ -9,8 +9,8 @@ import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -22,7 +22,7 @@ fun MainScreen(
 ) {
     viewModel.loadProfile()
 
-    val userOrNull by viewModel.user.observeAsState()
+    val userOrNull by viewModel.user.collectAsState()
     val user = userOrNull ?: return
 
     Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colors.background) {

@@ -17,8 +17,8 @@ import androidx.compose.material.Surface
 import androidx.compose.material.TextButton
 import androidx.compose.material.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -26,15 +26,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import com.sindrenm.spikes.compose.login.data.models.mockUsers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
+@OptIn(ExperimentalCoroutinesApi::class)
 @Composable
 fun LoginScreen(
     viewModel: LoginViewModel,
     onSignInSuccess: () -> Unit,
 ) {
-    val username by viewModel.username.observeAsState("")
-    val password by viewModel.password.observeAsState("")
-    val errorMessage by viewModel.errorMessage.observeAsState()
+    val username by viewModel.username.collectAsState()
+    val password by viewModel.password.collectAsState()
+    val errorMessage by viewModel.errorMessage.collectAsState()
 
     Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colors.background) {
         Column(
