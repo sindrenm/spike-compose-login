@@ -32,7 +32,7 @@ class LoginViewModel : ViewModel() {
     fun clear() {
         _username.value = ""
         _password.value = ""
-        _errorMessage.value = ""
+        _errorMessage.value = null
     }
 
     fun signIn(onSuccess: () -> Unit) {
